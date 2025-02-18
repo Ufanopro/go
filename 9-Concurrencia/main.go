@@ -8,6 +8,8 @@ import (
 
 func main() {
 
+	ch := make(chan string)
+
 	start := time.Now()
 
 	apis := []string{
@@ -19,23 +21,30 @@ func main() {
 		"https://graph.microsoft.com",
 	}
 
-	// Recorreer los apis
-	for _, api := range apis {
-		checkAPI(api)
-	}
+		// Recorreer los apis
+		for _, api := range apis {
+			go checkAPI(api, ch)
+		}
 
-	elapsed := time.Since(start)
-	fmt.Printf("¡Listo! ¡Tomó %v segundos!\n", elapsed.Seconds())
+		for i := 0; i < len(apis); i++ {
+			fmt.Print(<-ch)
+		}
+
+		elapsed := time.Since(start)
+		fmt.Printf("¡Listo! ¡Tomó %v segundos!\n", elapsed.Seconds())
+	
+		// Leer datos de canal
+		fmt.Println(<-ch)
 
 }
 
 // Función que verifica los APIS
-func checkAPI(api string) {
+func checkAPI(api string, ch chan string) {
 	_, err := http.Get(api)
 	if err != nil {
-		fmt.Printf("ERROR: ¡%s está caído!\n", api)
+		ch <- fmt.Sprintf("ERROR: ¡%s está caído!\n", api)
 		return
 	}
 
-	fmt.Printf("SUCCESS: ¡%s está en funcionamiento!\n", api)
+	ch <- fmt.Sprintf("SUCCESS: ¡%s está en funcionamiento!\n", api)
 }
