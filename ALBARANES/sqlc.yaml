@@ -1,0 +1,10 @@
+version: "2"
+sql:
+  - engine: "mysql"
+    queries: "sqlc/queries/"  # Ruta a los archivos de consultas SQL
+    schema: "sqlc/schema/schema.sql"  # Ruta al archivo de esquema SQL
+    gen:
+      go:
+        package: "generated"  # Nombre del paquete Go para los archivos generados
+        out: "sqlc/generated"  # Ruta donde se generarán los archivos
+        sql_package: "database/sql"  # Paquete SQL a utilizar
