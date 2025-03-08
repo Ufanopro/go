@@ -1,0 +1,2 @@
+2025/03/05 11:25:14 Este es un mensaje de error.
+2025/03/05 11:25:14 Error fatal ocurrido.

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parámetros Capturados</title>
+    <link rel="stylesheet" href="/public/css/styles.css" />
+</head>
+<body>
+    <h1>Parámetros</h1>
+    <p>Captura de parámetros por URL</p>
+
+    <ul>
+        {{ range $key, $value := . }}
+        <li>{{ $key }}: {{ $value }}</li>
+        {{ else }}
+        <li>No se recibieron parámetros.</li>
+        {{ end }}
+    </ul>
+
+     <!-- Mostrar el valor de p2 en un párrafo -->
+     <p>Valor de p2: {{ index . "param2" }}</p>
+
+    <a href="/">Volver a la página principal</a>
+
+    <script src="/public/js/script.js"></script>
+</body>
+</html>
