@@ -1,41 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estructuras</title>
-    <link rel="stylesheet" href="/public/css/styles.css" />
-</head>
+{{template "header"}}
 <body>
     <h1>Estructuras en GO</h1>
-    <h3>Declaracion de variables</h3>
-    {{with $valor:="Mi valor de variable"}}
-    <p> {{$valor}} </p>
-    {{end}}
-    <hr />
-    <img src="public/img/estructura_go.png" alt="Curso Golang" onclick="saludar();" />
-    <h3>Valores del Struct</h3>
-    <hr />
+    <main class="container">
+        <h3>Declaración de variables</h3>
+        {{ $valor := "Mi valor de variable" }}
+        <p>{{ $valor }}</p>
+        <hr />
 
-    <ul>
-        <li>Nombre: {{.Nombre}}</li>
-    </ul>
-    <hr />
-    <h3>Condicionales</h3>
-    {{ if ge .Edad 18}}
-    <p>Eres mayor de edad</p>
-    {{else}}
-    <p>Eres menor de edad</p>
-    {{end}}
-    <hr />
-    <h3>Habilidades</h3>
-    <ul>
-        {{ range .Habilidades}}
-            <li>{{.Nombre}}</li>
-        {{end}}
-    </ul>    
+        <img src="/public/img/estructura_go.png" alt="Curso Golang" onclick="saludar();" />
 
-    <script src="public/js/script.js"></script>
+        <h3>Valores del Struct</h3>
+        <hr />
+        <ul>
+            <li><strong>Nombre:</strong> {{ .Nombre }}</li>
+        </ul>
+        <hr />
+
+        <h3>Condicionales</h3>
+        {{ if ge .Edad 18 }}
+            <p>Eres mayor de edad</p>
+        {{ else }}
+            <p>Eres menor de edad</p>
+        {{ end }}
+        <hr />
+
+        <h3>Habilidades</h3>
+        {{ if .Habilidades }}
+            <ul>
+                {{ range .Habilidades }}
+                    <li>{{ .Nombre }}</li>
+                {{ end }}
+            </ul>
+        {{ else }}
+            <p>No hay habilidades registradas.</p>
+        {{ end }}
+    </main>
+
+    {{template "footer"}}
+    <script src="/public/js/script.js"></script>
 </body>
 </html>
