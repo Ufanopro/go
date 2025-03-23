@@ -1,0 +1,52 @@
+{{template "header"}}
+
+<main class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/recursos">About</a></li>
+            <li class="breadcrumb-item active" aria-current="page">MYSQL</li>
+        </ol>
+    </nav>
+    <nav>
+        <h1>MYSQL</h1>
+    </nav>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="/mysql/crear_view" class="btn btn-success">Crear</a>
+    </div>
+
+    <!-- Tabla de clientes -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range .Clientes }}
+            <tr>
+                <td>{{ .Id }}</td>
+                <td>{{ .Nombre }}</td>
+                <td>{{ .Correo }}</td>
+                <td>{{ .Telefono }}</td>
+                <td>
+                    <a href="/mysql/editar/{{ .Id }}" class="btn btn-primary btn-sm">
+                        <img src="/public/img/editar.png" alt="Editar" width="16" height="16">
+                    </a>
+                    <a href="/mysql/delete/{{.Id}}" class="btn btn-danger">
+                        <img src="/public/img/papelera.png" alt="Borrar" width="16" height="16">
+                    </a>
+                </td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+
+    <img src="/public/img/go-1.png" alt="Go Logo" />
+</main>
+
+{{template "footer"}}

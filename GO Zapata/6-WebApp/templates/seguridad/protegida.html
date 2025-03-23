@@ -1,0 +1,17 @@
+{{template "header"}}
+<!--contenido-->
+
+<main class="container">
+<h1>Protegida</h1>
+ <div class="row">
+    <p>Hola <strong>{{.tamila_nombre}}</strong> tu id es <strong>{{.tamila_id}}</strong></p>
+    <p>
+        <a href="javascript:void(0);" onclick="confirmarSweet('Realmente desea cerrar su sesión?', '/seguridad/logout');" class="btn btn-danger">
+            <i class="fas fa-power-off"></i> Cerrar sesión
+        </a>
+    </p>
+ </div>
+</main>
+<!--//contenido-->
+
+{{template "footer"}}

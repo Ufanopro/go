@@ -1,0 +1,29 @@
+{{template "header"}}
+
+<main class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/recursos">Utilidades</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cliente</li>
+        </ol>
+    </nav>
+
+    <h1>Detalles del Cliente</h1>
+
+    <div class="alert {{if eq .Mensaje "Cliente creado correctamente"}}alert-success{{else}}alert-danger{{end}}" role="alert">
+        {{.Mensaje}}
+    </div>
+
+    {{if .Datos.Nombre}}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{.Datos.Nombre}}</h5>
+            <p class="card-text"><strong>Correo:</strong> {{.Datos.Correo}}</p>
+            <p class="card-text"><strong>Teléfono:</strong> {{.Datos.Telefono}}</p>
+        </div>
+    </div>
+    {{end}}
+</main>
+
+{{template "footer"}}
